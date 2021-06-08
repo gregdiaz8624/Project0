@@ -1,6 +1,9 @@
 package com.revature.repositories;
 
 import com.revature.utils.JDBCConnection;
+
+import java.sql.Connection;
+
 import com.revature.models.USer
 
 public class UserDAO implements GenericRepository {

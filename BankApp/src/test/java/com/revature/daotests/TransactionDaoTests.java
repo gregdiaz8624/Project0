@@ -5,13 +5,15 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.revature.models.Transaction;
+
 public class TransactionDaoTests {
 	
 	
 	@Test
 	public void getAllTransactionTest() {
 		
-		List<Transactions> transaction = new ArrayList<Transaction>();
+		List<Transaction> transaction = new ArrayList<Transactio>();
 	
 		transaction = tdoa.getAll()
 	}
