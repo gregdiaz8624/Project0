@@ -3,22 +3,24 @@ package com.revature.models;
 public class Transaction {
 	
 	private Integer id;
-	private Account transFrom;
-	private Account transTo;
+	private Integer fromAcc;
+	private Integer toAcc;
 	private Double amount;
+	private String type;
 	private String status;
 	
 	public Transaction() {
 		super();
-	
+		// TODO Auto-generated constructor stub
 	}
 
-	public Transaction(Integer id, Account transFrom, Account transTo, Double amount, String status) {
+	public Transaction(Integer id, Integer fromAcc, Integer toAcc, Double amount, String type, String status) {
 		super();
 		this.id = id;
-		this.transFrom = transFrom;
-		this.transTo = transTo;
+		this.fromAcc = fromAcc;
+		this.toAcc = toAcc;
 		this.amount = amount;
+		this.type = type;
 		this.status = status;
 	}
 
@@ -30,20 +32,20 @@ public class Transaction {
 		this.id = id;
 	}
 
-	public Account getTransFrom() {
-		return transFrom;
+	public Integer getFromAcc() {
+		return fromAcc;
 	}
 
-	public void setTransFrom(Account transFrom) {
-		this.transFrom = transFrom;
+	public void setFromAcc(Integer fromAcc) {
+		this.fromAcc = fromAcc;
 	}
 
-	public Account getTransTo() {
-		return transTo;
+	public Integer getToAcc() {
+		return toAcc;
 	}
 
-	public void setTransTo(Account transTo) {
-		this.transTo = transTo;
+	public void setToAcc(Integer toAcc) {
+		this.toAcc = toAcc;
 	}
 
 	public Double getAmount() {
@@ -52,6 +54,14 @@ public class Transaction {
 
 	public void setAmount(Double amount) {
 		this.amount = amount;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getStatus() {
@@ -67,10 +77,11 @@ public class Transaction {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((amount == null) ? 0 : amount.hashCode());
+		result = prime * result + ((fromAcc == null) ? 0 : fromAcc.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
-		result = prime * result + ((transFrom == null) ? 0 : transFrom.hashCode());
-		result = prime * result + ((transTo == null) ? 0 : transTo.hashCode());
+		result = prime * result + ((toAcc == null) ? 0 : toAcc.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
 
@@ -88,6 +99,11 @@ public class Transaction {
 				return false;
 		} else if (!amount.equals(other.amount))
 			return false;
+		if (fromAcc == null) {
+			if (other.fromAcc != null)
+				return false;
+		} else if (!fromAcc.equals(other.fromAcc))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -98,25 +114,27 @@ public class Transaction {
 				return false;
 		} else if (!status.equals(other.status))
 			return false;
-		if (transFrom == null) {
-			if (other.transFrom != null)
+		if (toAcc == null) {
+			if (other.toAcc != null)
 				return false;
-		} else if (!transFrom.equals(other.transFrom))
+		} else if (!toAcc.equals(other.toAcc))
 			return false;
-		if (transTo == null) {
-			if (other.transTo != null)
+		if (type == null) {
+			if (other.type != null)
 				return false;
-		} else if (!transTo.equals(other.transTo))
+		} else if (!type.equals(other.type))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Transaction [id=" + id + ", transFrom=" + transFrom + ", transTo=" + transTo + ", amount=" + amount
-				+ ", status=" + status + "]";
+		return "Transaction [id=" + id + ", fromAcc=" + fromAcc + ", toAcc=" + toAcc + ", amount=" + amount + ", type="
+				+ type + ", status=" + status + "]";
 	}
-
+	
+	
+	
 	
 	
 }

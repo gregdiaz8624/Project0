@@ -1,21 +1,12 @@
 package com.revature.services;
 
-import java.util.List;
+import java.util.Scanner;
 
 import com.revature.models.User;
 
 public interface UserServices {
-	
-	User addUser(User u);
 
-	User getUser(Integer id);
-
-	List<User> getAllUser();
-	
-	boolean updateUser(User u);
-	
-	boolean deleteUser(User u);
-	
+	public User login(Scanner s);
+	public void register(Scanner s); 
 
 }
-

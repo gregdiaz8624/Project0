@@ -8,6 +8,7 @@ package com.revature.utils;
 	//we will return that. following singleton design pattern
 
 import java.io.IOException;
+
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
