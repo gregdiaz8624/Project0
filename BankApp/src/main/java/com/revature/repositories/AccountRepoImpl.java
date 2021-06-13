@@ -1,9 +1,7 @@
 package com.revature.repositories;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
-
-
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,6 +32,7 @@ public class AccountRepoImpl implements AccountRepo {
 				a.setId(rs.getInt("aid"));
 				a.setType(rs.getString("atype"));
 				a.setBalance(rs.getDouble("abalance"));
+				a.setStatus(rs.getString("astatus"));
 				
 				return a;
 			}
@@ -165,7 +164,8 @@ public class AccountRepoImpl implements AccountRepo {
 
 	@Override
 	public void denyAccount(Integer id) {
-		String sql = "deny_account(aid_input integer)";
+		String sql = "update accounts set astatus = ? where aid = ?;";
+		
 
 		try {
 
@@ -183,15 +183,17 @@ public class AccountRepoImpl implements AccountRepo {
 
 	@Override
 	public void appoveAccount(Integer id) {
-		String sql = "approve_account(aid_input integer)";
+		
+//		String sql = "update accounts set astatus = ? where aid = ?;";
+		String sql = "call approve_account(?)";
 
 		try {
 
-			PreparedStatement ps = conn.prepareStatement(sql);
+			CallableStatement cs = conn.prepareCall(sql);
 			
-			ps.setInt(2, id);
-			ps.setString(1, "approved");
-			ps.executeUpdate();
+			cs.setInt(1, id);
+//			cs.setString(1, "approved");
+			cs.execute();
 
 		} catch (SQLException e) {
 			e.printStackTrace();

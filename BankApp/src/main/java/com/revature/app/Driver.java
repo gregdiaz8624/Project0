@@ -2,6 +2,7 @@ package com.revature.app;
 
 import java.util.Scanner;
 
+import com.revature.logging.AppLogger;
 //import com.revature.models.Account;
 import com.revature.models.Employee;
 import com.revature.models.User;
@@ -15,6 +16,7 @@ import com.revature.services.UserServices;
 import com.revature.services.UserServicesImpl;
 
 public class Driver {
+	
 	
 	private static Scanner s = new Scanner(System.in);
 	private static Integer loggedUserId = 0;
@@ -32,6 +34,8 @@ public class Driver {
 	private static EmployeeServices es = new EmployeeServicesImpl();
 
 	public static void main(String[] args) {
+		
+		AppLogger.logger.info("Program started");
 		
 		System.out.println("Welcome to Gregory's Bank Application");
 		mainMenu = true;
@@ -112,8 +116,12 @@ public class Driver {
 				break;
 			}
 			case 2: { // View balance of account
-				System.out.println(as.observeAccs(loggedUserId));
-				
+				if(as.observeAccs(loggedUserId).size() == 0 ) {
+					System.out.println("You have no accounts!\n");
+					
+				}else {
+					System.out.println(as.observeAccs(loggedUserId));
+				}
 				break;
 			}
 			case 3: { // Withdraw from an account
@@ -150,6 +158,7 @@ public class Driver {
 		if (loggedEmployee == null) {
 			System.out.println("Incorrect Login, please try again\n");
 			mainMenu = true;
+			AppLogger.logger.info("Logged in as an Employee");
 			
 		} else {
 			System.out.println("Login successfull!");
@@ -183,14 +192,19 @@ public class Driver {
 
 				System.out.println("Please enter the id of the Account you wish to approve: ");
 				Integer aid = Integer.valueOf(s.nextLine());
-				System.out.println(es.approveAccount(aid));
+				es.approveAccount(aid);
+				System.out.println("Account Aproved");
+	
+			
 				break;
 			
 			}
 			case 3: { // View transaction logs
 				System.out.println("Please enter the id of the Account you wish to deny: ");
 				Integer aid = Integer.valueOf(s.nextLine());
-				System.out.println(es.approveAccount(aid));
+				es.denyAccount(aid);
+				System.out.println("Account Denied");
+
 				break;
 			}
 			case 4: { // View transaction logs

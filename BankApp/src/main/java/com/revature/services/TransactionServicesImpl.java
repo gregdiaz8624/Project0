@@ -1,7 +1,9 @@
 package com.revature.services;
 
 import java.util.List;
+
 import java.util.Scanner;
+
 
 import com.revature.models.Account;
 import com.revature.models.Transaction;
@@ -91,8 +93,8 @@ public class TransactionServicesImpl implements TransactionServices{
 			Double input = new Double(scanner.nextLine());
 
 			// Checking to see if input is valid.
-			if (input >0 ) {
-				if (input.compareTo(chBal) == -1 || input.compareTo(chBal) == 0) {
+			if (input >=0 ) {
+				if (input.compareTo(svBal) == -1 || input.compareTo(svBal) == 0) {
 					tr.addTransaction(input, "deposit", "pending");
 	
 					// math for transfer
@@ -164,7 +166,7 @@ public class TransactionServicesImpl implements TransactionServices{
 	
 					// return confirmation
 					System.out.println("Your current balance in checking is: " + chBal);
-	//				System.out.println("Withdrawl is now filed and pending");
+	//			
 				} else {
 					System.out.println("Invalid input, input cannot be greater than account balance");
 				}
